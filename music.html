@@ -1,0 +1,137 @@
+<html>
+    <head>
+        <title>songs - wake up, it's raining</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/styles.css">
+        
+        <style>
+            body{
+                background-color:#1e1e1f;
+            }
+
+            a, a:visited {
+                text-decoration: underline;
+                color: #D21C99;
+            }
+
+             a:hover{
+                color:white;
+             }
+
+             .songs-list {
+                display: flex;
+                flex-direction: column;
+                gap: 40px;
+             }
+
+             .song-item {
+                display: flex;
+                gap: 32px;
+                align-items: center;
+                width: 100%;
+             }
+
+             .song-item a {
+                display: flex;
+                gap: 32px;
+                align-items: center;
+                text-decoration: none;
+                color: inherit;
+                width: 100%;
+                padding: 12px;
+                border-radius: 4px;
+             }
+
+             .song-item a:hover {
+                background-color: rgba(255, 255, 255, 0.05);
+             }
+
+             .song-artwork {
+                flex-shrink: 0;
+                width: 150px;
+                height: 150px;
+             }
+
+             .song-artwork img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border: 1px solid #fff;
+             }
+
+             .song-info {
+                flex: 1;
+             }
+
+             .song-title {
+                font-size: 16px;
+                font-weight: bold;
+             }
+
+             .song-date {
+                font-size: 12px;
+                color: #999;
+             }
+
+        </style>
+
+    </head>
+    <body>
+        <div class="container">
+
+            <!-- Top Corners and Nav -->
+            <header>
+                <div class="corner corner-tl">wake</div>
+                <nav class="nav">
+                    <ul>
+                        <li><a href="music.html" class="active">music</a></li>
+                        <li><a href="about.html">about</a></li>
+                    </ul>
+                </nav>
+                <div class="corner corner-tr">up</div>
+            </header>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <h1 class="title">music</h1>
+                
+                <div class="songs-list">
+                    
+                    <div class="song-item">
+                        <a href="demos-june-2026.html">
+                            <div class="song-artwork">
+                                <img src="img/demo-june-2026-cover.jpg" alt="Demos June 2026 cover art">
+                            </div>
+                            <div class="song-info">
+                                <div class="song-title">june</div>
+                                <div class="song-date">released june 30, 2026</div>
+                                <span class="tag">demos</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="song-item">
+                        <a href="song-reminders.html">
+                            <div class="song-artwork">
+                                <img src="img/song-cover-reminders.jpg" alt="Reminders cover art">
+                            </div>
+                            <div class="song-info">
+                                <div class="song-title">reminders</div>
+                                <div class="song-date">// february 6, 2026</div>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Footer -->
+            <footer>
+                <div class="corner corner-bl">it's</div>
+                <div class="corner corner-br">raining</div>
+            </footer>
+
+        </div>
+    </body>
+</html>

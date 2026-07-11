@@ -1,0 +1,306 @@
+<html>
+    <head>
+        <title>sundowner / wake up, it's raining</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/styles.css">
+        
+        <style>
+            body{
+                background-color:#272A20;
+            }
+
+            @media (max-width: 768px) {
+                html {
+                    font-size: 12px;
+                }
+            }
+
+            a, a:visited {
+                text-decoration: underline;
+                color: #62ADE7;
+            }
+
+             a:hover{
+                color:#62ADE7;
+             }
+
+             .audio-container{
+                display:flex;
+                align-items: center;
+                gap:24px;
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;
+             }
+
+             .audio-player{
+                width:100%;
+                max-width: 400px;
+             }
+
+             #play-count{
+                width:auto;
+                text-wrap: nowrap;
+             }
+             .popup-link:hover{
+                color:#62ADE7;
+                text-decoration:underline;
+                cursor:pointer;
+                border-color:#62ADE7;
+
+             }
+
+             .cover-image:hover {
+                border-color: #62ADE7; /* or any color you prefer */
+                }
+
+             /* Snow effect */
+
+
+            /* Snow overlay layer (separate from content) */
+            .snow {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0; /* behind content */
+            }
+
+            /* Ensure your content sits above */
+            .container {
+            position: relative;
+            z-index: 1;
+            }
+
+            /* Two moving layers */
+            .snow::before,
+            .snow::after {
+            content: "";
+            position: absolute;
+            inset: -200%;
+            background-repeat: repeat;
+            animation: snowfall linear infinite;
+            will-change: transform;
+            }
+
+            /* Chunkier pixels */
+            .snow::before {
+            background-image:
+                radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,.9) 50%, transparent 51%),
+                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,.9) 50%, transparent 51%),
+                radial-gradient(2px 2px at 90px 40px, rgba(255,255,255,.9) 50%, transparent 51%),
+                radial-gradient(2px 2px at 130px 80px, rgba(255,255,255,.9) 50%, transparent 51%),
+                radial-gradient(2px 2px at 160px 120px, rgba(255,255,255,.9) 50%, transparent 51%);
+            background-size: 220px 220px;
+            opacity: 0.35;          /* only affects this layer, not your site */
+            animation-duration: 45s;
+            }
+
+            /* Finer pixels */
+            .snow::after {
+            background-image:
+                radial-gradient(1px 1px at 50px 50px, rgba(255,255,255,.9) 50%, transparent 51%),
+                radial-gradient(1px 1px at 100px 150px, rgba(255,255,255,.9) 50%, transparent 51%),
+                radial-gradient(1px 1px at 150px 30px, rgba(255,255,255,.9) 50%, transparent 51%),
+                radial-gradient(1px 1px at 70px 120px, rgba(255,255,255,.9) 50%, transparent 51%);
+            background-size: 160px 160px;
+            opacity: 0.25;
+            animation-duration: 70s;
+            }
+
+            @keyframes snowfall {
+            from { transform: translate3d(0, 0, 0); }
+            to   { transform: translate3d(0, 50%, 0); }
+            }
+
+        </style>
+
+        
+
+    </head>
+    <body>
+        <div class="snow" aria-hidden="true"></div>
+            <div class="container">
+
+                <div class="corner corner-tl">wake</div>
+                <div class="corner corner-tr">up</div>
+                <div class="corner corner-bl">it's<!--<a href="2025-01-26-poem-will-i-know.html"><span class="forward"><img style="-webkit-transform:scale(-1,1);" src="img/cursor.webp"> newer</span></a>--></div>
+                <div class="corner corner-br">raining</div>
+
+                <!-- put this back in "coner-br" when you want it again <a href="2025-01-26-poem-will-i-know.html"><span class="back">older <img src="img/cursor.webp"></span></a> -->
+
+                <div class="main-content">
+                    <div class="entry">
+                        <h2 class="title">sundowner</h2>
+                        <h3 class="description">// updated: february 25, 2025</h3><br>
+                        <span class="popup-link" data-modal="detailArt"><img class="cover-image" src="img/song-cover-sundowner.jpg" title="Sundowner single artwork"></span><br>
+                        <br>
+                        <div class="audio-container">
+                            <audio id="song-audio" class="audio-player" controls>
+                                <source src="audio/Billy GJ_03 Dist Drums.wav" type="audio/wav">
+                            </audio>             
+                        </div>
+
+                        <br>
+                        <!-- <div id="play-count" class="">plays: ...</div> -->
+                        <span class="popup-link" data-modal="detailCredits">credits</span><br><br>
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                        <br>
+                        <p>
+                            there it is again<br>
+                            something incomplete is begging<br>
+                            for an end<br>
+                            every evening it crawls<br>
+                            across the floor<br>
+                            and writhes on the ground<br>
+                            it twists its way up to my neck<br>
+                            and spreads its breath<br><br>
+
+                            i can be your sundowner<br>
+                            just happy to have your shadow<br>
+                            i can be gone by the morning<br>
+                            don't need you all to be borrowed
+
+                        </p>
+                    </div>
+                </div>
+                
+            </div>
+
+        </div>
+        
+        <div id="modal-overlay" class="modal-overlay hidden">
+            <div class="modal-border">
+                <div class="modal-content">
+                    <span class="close-button">&times;</span>
+                    <div id="modal-text">
+                    <!-- dynamic content goes here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+
+            // Annotation Scripts
+            const modalOverlay = document.getElementById("modal-overlay");
+            const modalText = document.getElementById("modal-text");
+            const closeBtn = document.querySelector(".close-button");
+
+            // Popup Annotations
+            const modalContent = {
+                detailArt: "A collage of three photos that I've taken over a decade a part.<br><br>The background photo is of the treetops in winter in my parents' backyard. I had recently been gifted a camera lens from a family friend, L, who was a photographer. She gave me the lens on one condition: that I always remain creative.<br><br>I have been very critical of my work-so much so that I have not been sharing it with others. The creation and release of this song has been an exercise in letting go and trusting the art--attempting to value the moment that is created by it.<br><br>When I saw this photo again recently, I was taken back to the day that I received that gift. It is a snapshot of my life that I am very thankful for and it reminded me of a time when I felt less inhibited to share. It felt spiritually aligned with this song so many years later.<br><br>I hope that I am making L proud.",
+                detailCredits:"All instrumentation, songwriting, and artwork by B.G.<br><br>Mixing by B.G. and <a href='https://www.griffinjennings.com/' tareget='_blank'>G.J.</a>",
+                detail1: "Our bodies move along without us whether we notice it or not; whether we want them to or not. The song began with this idea.<br><br>Despite looking at my hands countless times every day, the length of my nails always surprises me. They're short until, one day, they are much too long. There is no inbetween. This little surprise is always a reminder that time is consistently passing<br><br>This time, it's a reminder that leads to a small spiral into the memories of missing someone.",
+                detail2: "As a child, I used to lie in bed and stare at my hands. I'd reach one out in front of me toward the ceiling and stretch it as far as I could reach. I'd spread my fingers as wide and look at the contours of my thumb, the lines in my palm, the bones underneath the skin. I would do it for hours. My mom would read books to me and I'd be staring at my hands the whole time.<br><br>I don't look at them as much as I used to.",
+                detail3: "As much as I may have been trying, the thoughts are impossible to avoid.<br><br>You cannot run away from yourself.",
+                detail4: "<img class='detail-img' src='img/song-reminders-1.png'><br>There have been many iterations of this song. The original line here was 'If I die, promise me you'll buy the Rhodes'. This is a reference to the electric piano, the Fender Rhodes, from the 70s. My friend, J, and I have always said that some day we would buy one together. It's a goregous instrument that we've used heavily in the past. It feels like a defining and delicate feature of some of the artwork we made together.<br><br>This song is very much about missing people and at the time I was missing him. It's a small but important image that I think of every time I read these lines.",
+                detail5: "A little intoxicating reminder of the other person. I hear their distance. I hear sweetness. I hear all of them and I deeply miss them.",
+                detail6: "A plea that I'd take nothing for granted and appreciate all of the mundane details of life if we were together again."
+            };
+
+            document.querySelectorAll(".popup-link").forEach(link => {
+                link.addEventListener("click", () => {
+                const key = link.getAttribute("data-modal");
+                modalText.innerHTML = modalContent[key] || "<p>More context coming soon.</p>";
+                modalOverlay.classList.add("show");
+                modalOverlay.classList.remove("hidden");
+                document.body.classList.add("no-scroll"); // 🚫 disable scroll
+                });
+            });
+
+            closeBtn.addEventListener("click", () => {
+               modalOverlay.classList.remove("show");
+                setTimeout(() => {
+                modalOverlay.classList.add("hidden");
+                document.body.classList.remove("no-scroll"); // ✅ re-enable scroll
+                }, 300);
+            });
+
+            modalOverlay.addEventListener("click", e => {
+                if (e.target === modalOverlay) {
+                closeBtn.click();
+                }
+            });
+
+        </script>
+
+        <!-- Connecting to Supabase -->
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+        
+        <script>
+
+            // Play count Incrementer
+
+            const SUPABASE_URL = 'https://szwxfzytyvvwmviddqwh.supabase.co';
+            const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN6d3hmenl0eXZ2d212aWRkcXdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTEzOTA2NTksImV4cCI6MjA2Njk2NjY1OX0.fmlnPcb9NmS3OfU1CMEglapeXDESF6BYS7YiyAergYo';
+            const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+            const SONG_ID = 'reminders';
+
+            const playCountEl = document.getElementById('play-count');
+            const audio = document.getElementById('song-audio');
+
+                async function fetchPlayCount() {
+                const { data, error } = await supabase
+                    .from('play_counts')
+                    .select('count')
+                    .eq('song_id', SONG_ID)
+                    .single();
+
+                if (error) console.error('Fetch error:', error);
+                else playCountEl.textContent = `plays: ${data.count}`;
+                }
+
+                async function incrementPlayCount() {
+                const { data, error } = await supabase.rpc('increment_play_count', {
+                    song_id_input: SONG_ID
+                });
+                if (error) console.error('Increment error:', error);
+                else playCountEl.textContent = `plays: ${data}`;
+                }
+
+            // Fetch on load
+            fetchPlayCount();
+
+            let playedFor = 0;
+            let lastTimestamp = 0;
+            let counted = false;
+
+            // 1. Track listening time
+            audio.addEventListener('timeupdate', () => {
+            const currentTime = audio.currentTime;
+
+            if (!audio.paused && !audio.seeking) {
+                const delta = currentTime - lastTimestamp;
+                if (delta < 1.0) {  // if it's continuous
+                playedFor += delta;
+                }
+                lastTimestamp = currentTime;
+            }
+
+            // 2. Count only if they listened for 30+ seconds
+            if (playedFor >= 30 && !counted) {
+                counted = true;
+                incrementPlayCount();
+            }
+            });
+
+            // 3. Reset on end
+            audio.addEventListener('ended', () => {
+            playedFor = 0;
+            lastTimestamp = 0;
+            counted = false;
+            });
+
+            audio.addEventListener('pause', () => {
+            lastTimestamp = 0; // prevent inflating time if resumed later
+            });
+
+
+
+        </script>
+
+    </body>
+
+    
+</html>
